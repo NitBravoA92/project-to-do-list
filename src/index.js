@@ -53,3 +53,9 @@ const markUpTask = (task) => {
   `;
 }
 
+const toDoList = () => {
+  const listItems = toDoTasks.map(task => markUpTask(task));
+  document.querySelector('#to-do-list').innerHTML = listItems.join('');
+}
+
+document.addEventListener('DOMContentLoaded', toDoList);
