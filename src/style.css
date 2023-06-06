@@ -1,0 +1,26 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+}
+
+body,
+main,
+section {
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  background-color: #f2f2f2;
+  font-size: 14px;
+  color: #252525;
+  font-style: normal;
+  font-weight: 400;
+}
