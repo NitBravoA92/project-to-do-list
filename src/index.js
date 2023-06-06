@@ -1,3 +1,5 @@
+import './style.css';
+
 const toDoTasks = [
   {
     description: 'Build the contact section on Renting car website',
