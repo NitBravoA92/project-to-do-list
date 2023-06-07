@@ -35,12 +35,14 @@ main {
 }
 
 #app {
+  width: 100%;
   background-color: #fff;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
 }
 
 #app #title,
 #app #to-do-list .task {
+  width: 100%;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
@@ -61,17 +63,25 @@ main {
   align-items: center;
 }
 
+#app #to-do-list .task .task-content {
+  display: flex;
+  align-items: center;
+}
+
 #app #to-do-list .task .mark-task {
-  width: 15%;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: center;
+  margin-right: 0.7rem;
 }
 
 #app #to-do-list .task .task-description {
-  width: 75%;
   font-weight: 400;
+}
+
+#app #to-do-list .task .task-description:focus-visible {
+  outline: none;
 }
 
 #app #to-do-list .task .task-options {
@@ -102,4 +112,14 @@ main {
   border: none;
   border-radius: 50%;
   background-color: #d7d7d7;
+}
+
+@media (min-width: 768px) {
+  #app {
+    width: 70%;
+  }
+
+  #app #to-do-list .task .mark-task {
+    margin-right: 0.9rem;
+  }
 }
