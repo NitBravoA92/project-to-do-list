@@ -75,6 +75,7 @@ main {
 }
 
 #app #to-do-list .task .task-content {
+  width: 90%;
   display: flex;
   align-items: center;
 }
@@ -89,6 +90,7 @@ main {
 
 #app #to-do-list .task .task-description {
   font-weight: 300;
+  width: 95%;
 }
 
 #app #to-do-list .task .task-description:focus-visible {
