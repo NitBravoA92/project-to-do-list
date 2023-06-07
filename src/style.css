@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+}
+
+body,
+main,
+section {
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  background-color: #f2f2f2;
+  font-size: 14px;
+  color: #000;
+  font-style: normal;
+  font-weight: 400;
+  font-family: "Open Sans", "Lucida Grande", tahoma, verdana, arial, sans-serif;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  padding: 5rem 5% 3rem 5%;
+}
+
+#app {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+#app #title,
+#app #to-do-list .task,
+#clear-all-container {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #d7d7d7;
+}
+
+#app #title,
+#app #to-do-list .task {
+  justify-content: space-between;
+}
+
+#clear-all-container {
+  background-color: #f1f2f5;
+  justify-content: center;
+}
+
+#app #title {
+  font-weight: 500;
+  color: #4d4d4d;
+}
+
+#app #refresh {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+#app #to-do-list .task .task-content {
+  display: flex;
+  align-items: center;
+}
+
+#app #to-do-list .task .mark-task {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  margin-right: 0.7rem;
+}
+
+#app #to-do-list .task .task-description {
+  font-weight: 300;
+}
+
+#app #to-do-list .task .task-description:focus-visible {
+  outline: none;
+}
+
+#app #to-do-list .task .task-options {
+  width: 10%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#app #to-do-list .task .remove-task {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: none;
+}
+
+.drag-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.drag-icon span {
+  width: 3.5px;
+  height: 3.5px;
+  border: none;
+  border-radius: 50%;
+  background-color: #d7d7d7;
+}
+
+#btn-clear-list {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  overflow: visible;
+  opacity: 0.5;
+  font-weight: 300;
+  color: #404040;
+  font-size: 1.27em;
+  transition: all 0.4s ease;
+}
+
+#btn-clear-list:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+  #app {
+    width: 70%;
+  }
+
+  #app #to-do-list .task .mark-task {
+    margin-right: 0.9rem;
+  }
+}
