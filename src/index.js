@@ -33,8 +33,7 @@ const toDoTasks = [
   },
 ];
 
-const markUpTask = (task) => {
-  return `
+const markUpTask = (task) => `
     <li class="task ${task.completed ? 'completed' : ''}" data-index="${task.id}">
       <div class="mark-task">
         <input type="checkbox" id="task-${task.id}-status" ${task.completed ? 'checked' : ''}>
@@ -51,11 +50,10 @@ const markUpTask = (task) => {
       </div>
     </li>
   `;
-}
 
 const toDoList = () => {
-  const listItems = toDoTasks.map(task => markUpTask(task));
+  const listItems = toDoTasks.map((task) => markUpTask(task));
   document.querySelector('#to-do-list').innerHTML = listItems.join('');
-}
+};
 
 document.addEventListener('DOMContentLoaded', toDoList);
