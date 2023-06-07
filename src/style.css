@@ -36,7 +36,7 @@ main {
 
 #app {
   background-color: #fff;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
 }
 
 #app #title,
@@ -59,7 +59,7 @@ main {
   cursor: pointer;
   display: flex;
   align-items: center;
-} 
+}
 
 #app #to-do-list .task .mark-task {
   width: 15%;
