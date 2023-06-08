@@ -11,6 +11,7 @@
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
+    - [Video Demo ](#video-demo-)
   - [💻 Getting Started ](#-getting-started-)
     - [Setup](#setup)
     - [Prerequisites](#prerequisites)
@@ -51,6 +52,15 @@
 - **source code packaged with Webpack**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### Video Demo <a name="video-demo"></a>
+
+This is a video demonstration of the functionality of the application in different browsers:
+
+- [To Do List App - Video Demo](https://www.loom.com/share/fc52acc581a545e48f557a4ccb356d7d)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
