@@ -11,4 +11,14 @@ class ToDoList {
   setTasksListToStore = () => {
     localStorage.setItem("tasks-list", JSON.stringify(this.tasksList));
   };
+  setTasksIds = () => {
+    const tasks = this.tasksList.map((task, index) => {
+      return {
+        description: task.description,
+        completed: task.completed,
+        id: index + 1,
+      };
+    });
+    this.tasksList = [...tasks];
+  };
 }
