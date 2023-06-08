@@ -141,7 +141,6 @@ main {
   outline: none;
 }
 
-/* new code */
 #app #to-do-list .task.completed .task-description {
   opacity: 0.4;
   text-decoration: line-through;
