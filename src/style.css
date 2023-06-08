@@ -142,12 +142,12 @@ main {
 }
 
 /* new code */
-#app #to-do-list .task .task-description.completed {
+#app #to-do-list .task.completed .task-description {
   opacity: 0.4;
   text-decoration: line-through;
 }
 
-#app #to-do-list .task.focus .task-description.completed {
+#app #to-do-list .task.focus.completed .task-description {
   opacity: 1;
   text-decoration: none;
 }
