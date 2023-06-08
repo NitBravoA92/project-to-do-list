@@ -49,7 +49,13 @@ class ToDoList {
     </li>
   `;
 
+  renderTasksList = () => {
+    const listItems = this.tasksList.map((task) => markUpTask(task));
+    document.querySelector("#to-do-list").innerHTML = listItems.join("");
+  };
+
   listTasks = () => {
     getTasksListFromStore();
+    renderTasksList();
   }
 }
