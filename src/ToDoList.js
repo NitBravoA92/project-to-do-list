@@ -95,6 +95,7 @@ class ToDoList {
     const taskItem = event.target.parentElement.parentElement;
     const btnRemove = taskItem.querySelector('.remove-task');
     taskItem.classList.add('focus');
+    btnRemove.style.display = 'block';
     btnRemove.style.opacity = '1';
     btnRemove.removeAttribute('disabled');
   };
@@ -106,7 +107,8 @@ class ToDoList {
     btnRemove.style.opacity = '0';
     setTimeout(() => {
       btnRemove.setAttribute('disabled', 'true');
-    }, 100);
+      btnRemove.style.display = 'none';
+    }, 500);
     this.setTasksListToStore();
   };
 
