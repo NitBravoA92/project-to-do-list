@@ -141,7 +141,7 @@ When all the code changes are ready, run the following command to have webpack g
 ## 🔭 Future Features <a name="future-features"></a>
 
 - [x] **Create a section to list the tasks of the To Do List**
-- [ ] **Create functionality to add and remove tasks from the To Do List**
+- [x] **Create functionality to add and remove tasks from the To Do List**
 - [ ] **Add interactivity to the task list: Mark tasks as complete, reordering a task using drag-and-drop**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
