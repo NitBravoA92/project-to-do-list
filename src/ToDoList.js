@@ -71,8 +71,22 @@ class ToDoList {
     }
   };
 
+  createTaskEventHandler = () => {
+    const inputDescription = document.querySelector("#inputTaskDescription");
+    const btnAddTask = document.querySelector("#btnAddTask");
+    inputDescription.addEventListener("keydown", (event) => {
+      if (event.code === "Enter") {
+        createTask(inputDescription);
+      }
+    });
+    btnAddTask.addEventListener("click", () => {
+      createTask(inputDescription);
+    });
+  };
+
   listTasks = () => {
     getTasksListFromStore();
     renderTasksList();
+    createTaskEventHandler();
   }
 }
