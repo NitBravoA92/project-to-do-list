@@ -27,7 +27,7 @@ class ToDoList {
     <li class="task ${task.completed ? 'completed' : ''}" data-index="${task.index}">
       <div class="task-content">
         <div class="mark-task">
-          <input type="checkbox" id="task-${task.index}-status" ${task.completed ? 'checked' : ''}>
+          <input type="checkbox" id="task-${task.index}-status" class="task-check-status" ${task.completed ? 'checked' : ''}>
           <label for="task-${task.index}-status"></label>
         </div>
         <h3 class="task-description" contenteditable="true">${
@@ -50,7 +50,9 @@ class ToDoList {
   renderTasksList = () => {
     const listItems = this.tasksList.map((task) => this.markUpTask(task));
     document.querySelector('#to-do-list').innerHTML = listItems.join('');
-    this.generalEventHandlers();
+    if(this.tasksList.length > 0) {
+      this.generalEventHandlers();
+    }
   };
 
   createTask = (inputDesc) => {
@@ -76,6 +78,16 @@ class ToDoList {
     const index = Number(taskId) - 1;
     const taskDescription = taskItem.innerText;
     this.tasksList[index].description = taskDescription;
+  };
+
+  UpdateTaskStatus = (event) => {
+    const taskCompleted = event.target.checked;
+    const taskItem = event.target.parentElement.parentElement.parentElement;
+    const taskId = taskItem.dataset.index;
+    const index = Number(taskId) - 1;
+    this.tasksList[index].completed = taskCompleted;
+    this.setTasksListToStore();
+    taskItem.classList.toggle('completed');
   };
 
   deleteTask = (event) => {
@@ -128,6 +140,7 @@ class ToDoList {
   generalEventHandlers() {
     const allTaskDescription = document.querySelectorAll('.task-description');
     const allTaskBtnRemove = document.querySelectorAll('.remove-task');
+    const allTaskCheckbox = document.querySelectorAll('.task-check-status');
     allTaskDescription.forEach((task) => {
       task.addEventListener('keyup', this.updateTask);
       task.addEventListener('focusin', this.onTaskFocus);
@@ -135,6 +148,9 @@ class ToDoList {
     });
     allTaskBtnRemove.forEach((btnRemove) => {
       btnRemove.addEventListener('click', this.deleteTask);
+    });
+    allTaskCheckbox.forEach((inputStatus) => {
+      inputStatus.addEventListener('change', this.UpdateTaskStatus);
     });
   }
 
