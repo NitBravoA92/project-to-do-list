@@ -19,6 +19,10 @@ ul {
   list-style: none;
 }
 
+svg {
+  pointer-events: none;
+}
+
 body {
   background-color: #f2f2f2;
   font-size: 14px;
@@ -42,7 +46,8 @@ main {
 
 #app #title,
 #app #to-do-list .task,
-#clear-all-container {
+#clear-all-container,
+#new-task-entry {
   width: 100%;
   padding: 1rem;
   display: flex;
@@ -51,8 +56,14 @@ main {
 }
 
 #app #title,
-#app #to-do-list .task {
+#app #to-do-list .task,
+#new-task-entry {
   justify-content: space-between;
+  position: relative;
+}
+
+#app #to-do-list .task.focus {
+  background-color: #f9f98e;
 }
 
 #clear-all-container {
@@ -74,9 +85,37 @@ main {
   align-items: center;
 }
 
+#new-task-entry #inputTaskDescription {
+  width: 96%;
+  font-size: 1.25em;
+  font-weight: 300;
+  border: none;
+  outline: none;
+}
+
+#new-task-entry #inputTaskDescription::placeholder {
+  font-weight: 300;
+  opacity: 0.5;
+  font-style: italic;
+}
+
+#new-task-entry #btnAddTask {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  padding: 0.2rem;
+}
+
 #app #to-do-list .task .task-content {
+  width: 95%;
   display: flex;
   align-items: center;
+}
+
+#app #to-do-list .task.focus .task-content {
+  width: 100%;
 }
 
 #app #to-do-list .task .mark-task {
@@ -89,24 +128,39 @@ main {
 
 #app #to-do-list .task .task-description {
   font-weight: 300;
+  width: 100%;
+  transition: background-color 0.3s ease-in-out;
 }
 
-#app #to-do-list .task .task-description:focus-visible {
+#app #to-do-list .task.focus .task-description {
   outline: none;
 }
 
 #app #to-do-list .task .task-options {
-  width: 10%;
+  width: 5%;
   display: flex;
   justify-content: flex-end;
 }
 
+#app #to-do-list .task.focus .task-options {
+  width: 0;
+  display: none;
+}
+
 #app #to-do-list .task .remove-task {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
+  pointer-events: auto;
   display: none;
+  opacity: 0;
+  margin-right: 0.8rem;
+  transition: opacity 0.2s linear;
 }
 
 .drag-icon {
@@ -138,7 +192,7 @@ main {
   font-weight: 300;
   color: #404040;
   font-size: 1.27em;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 
 #btn-clear-list:hover {
