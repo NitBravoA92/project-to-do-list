@@ -54,6 +54,23 @@ class ToDoList {
     document.querySelector("#to-do-list").innerHTML = listItems.join("");
   };
 
+  createTask = (inputDesc) => {
+    const inputDescription = inputDesc.value;
+    if (inputDescription.length > 0) {
+      const id = this.tasksList.length + 1;
+      const newTask = {
+        description: inputDescription,
+        completed: false,
+        id,
+      };
+      this.tasksList.push(newTask);
+      inputDesc.value = "";
+      inputDesc.focus();
+      setTasksListToStore();
+      renderTasksList();
+    }
+  };
+
   listTasks = () => {
     getTasksListFromStore();
     renderTasksList();
