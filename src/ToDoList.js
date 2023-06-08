@@ -52,6 +52,7 @@ class ToDoList {
   renderTasksList = () => {
     const listItems = this.tasksList.map((task) => this.markUpTask(task));
     document.querySelector("#to-do-list").innerHTML = listItems.join("");
+    this.generalEventHandlers();
   };
 
   createTask = (inputDesc) => {
@@ -71,6 +72,15 @@ class ToDoList {
     }
   };
 
+  updateTask = (event) => {
+    const taskItem = event.target;
+    const taskId = taskItem.parentElement.parentElement.dataset.index;
+    const index = parseInt(taskId) - 1;
+    const taskDescription = taskItem.innerText;
+    this.tasksList[index].description = taskDescription;
+  };
+
+
   createTaskEventHandler = () => {
     const inputDescription = document.querySelector("#inputTaskDescription");
     const btnAddTask = document.querySelector("#btnAddTask");
@@ -83,6 +93,14 @@ class ToDoList {
       this.createTask(inputDescription);
     });
   };
+
+  generalEventHandlers = function() {
+    const allTaskDescription = document.querySelectorAll(".task-description");
+    const allTaskBtnRemove = document.querySelectorAll(".remove-task");
+    allTaskDescription.forEach((task) => {
+      task.addEventListener("keyup", this.updateTask);
+    });
+  }
 
   listTasks = () => {
     this.getTasksListFromStore();
