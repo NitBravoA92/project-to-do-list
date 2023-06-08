@@ -15,20 +15,20 @@ class ToDoList {
   };
 
   setTasksIds = () => {
-    const tasks = this.tasksList.map((task, index) => ({
+    const tasks = this.tasksList.map((task, i) => ({
       description: task.description,
       completed: task.completed,
-      id: index + 1,
+      index: i + 1,
     }));
     this.tasksList = [...tasks];
   };
 
   markUpTask = (task) => `
-    <li class="task ${task.completed ? 'completed' : ''}" data-index="${task.id}">
+    <li class="task ${task.completed ? 'completed' : ''}" data-index="${task.index}">
       <div class="task-content">
         <div class="mark-task">
-          <input type="checkbox" id="task-${task.id}-status" ${task.completed ? 'checked' : ''}>
-          <label for="task-${task.id}-status"></label>
+          <input type="checkbox" id="task-${task.index}-status" ${task.completed ? 'checked' : ''}>
+          <label for="task-${task.index}-status"></label>
         </div>
         <h3 class="task-description" contenteditable="true">${
           task.description
@@ -60,7 +60,7 @@ class ToDoList {
       const newTask = {
         description: inputDescription,
         completed: false,
-        id,
+        index: id,
       };
       this.tasksList.push(newTask);
       inputDesc.value = '';
@@ -83,7 +83,7 @@ class ToDoList {
     const taskItem = taskBtnRemove.parentElement;
     const taskId = Number(taskItem.dataset.index);
     if (this.tasksList.length > 0) {
-      const newTaskList = this.tasksList.filter((task) => task.id !== taskId);
+      const newTaskList = this.tasksList.filter((task) => task.index !== taskId);
       this.tasksList = [...newTaskList];
       this.setTasksIds();
       this.setTasksListToStore();
