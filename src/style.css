@@ -19,6 +19,10 @@ ul {
   list-style: none;
 }
 
+svg {
+  pointer-events: none;
+}
+
 body {
   background-color: #f2f2f2;
   font-size: 14px;
@@ -53,6 +57,11 @@ main {
 #app #title,
 #app #to-do-list .task {
   justify-content: space-between;
+  position: relative;
+}
+
+#app #to-do-list .task.focus {
+  background-color: #f9f98e;
 }
 
 #clear-all-container {
@@ -75,9 +84,13 @@ main {
 }
 
 #app #to-do-list .task .task-content {
-  width: 90%;
+  width: 95%;
   display: flex;
   align-items: center;
+}
+
+#app #to-do-list .task.focus .task-content {
+  width: 100%;
 }
 
 #app #to-do-list .task .mark-task {
@@ -90,25 +103,39 @@ main {
 
 #app #to-do-list .task .task-description {
   font-weight: 300;
-  width: 95%;
+  width: 100%;
+  transition: background-color 0.3s ease-in-out;
 }
 
-#app #to-do-list .task .task-description:focus-visible {
+#app #to-do-list .task.focus .task-description {
   outline: none;
 }
 
 #app #to-do-list .task .task-options {
-  width: 10%;
+  width: 5%;
   display: flex;
   justify-content: flex-end;
 }
 
+#app #to-do-list .task.focus .task-options {
+  width: 0;
+  display: none;
+}
+
 #app #to-do-list .task .remove-task {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
-  display: none;
+  pointer-events: auto;
+  display: block;
+  opacity: 0;
+  margin-right: 0.8rem;
+  transition: all 0.5s ease;
 }
 
 .drag-icon {
@@ -117,6 +144,7 @@ main {
   justify-content: center;
   align-items: center;
   gap: 2px;
+  transition: all 0.5s ease;
 }
 
 .drag-icon span {
