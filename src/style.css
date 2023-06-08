@@ -46,7 +46,8 @@ main {
 
 #app #title,
 #app #to-do-list .task,
-#clear-all-container {
+#clear-all-container,
+#new-task-entry {
   width: 100%;
   padding: 1rem;
   display: flex;
@@ -55,7 +56,8 @@ main {
 }
 
 #app #title,
-#app #to-do-list .task {
+#app #to-do-list .task,
+#new-task-entry {
   justify-content: space-between;
   position: relative;
 }
@@ -81,6 +83,29 @@ main {
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+#new-task-entry #inputTaskDescription {
+  width: 96%;
+  font-size: 1.25em;
+  font-weight: 300;
+  border: none;
+  outline: none;
+}
+
+#new-task-entry #inputTaskDescription::placeholder {
+  font-weight: 300;
+  opacity: 0.5;
+  font-style: italic;
+}
+
+#new-task-entry #btnAddTask {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  padding: 0.2rem;
 }
 
 #app #to-do-list .task .task-content {
