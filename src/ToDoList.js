@@ -80,6 +80,24 @@ class ToDoList {
     this.tasksList[index].description = taskDescription;
   };
 
+  onTaskFocus = (event) => {
+    const taskItem = event.target.parentElement.parentElement;
+    const btnRemove = taskItem.querySelector(".remove-task");
+    taskItem.classList.add("focus");
+    btnRemove.style.opacity = "1";
+    btnRemove.removeAttribute("disabled");
+  };
+
+  onTaskFocusOut = (event) => {
+    const taskItem = event.target.parentElement.parentElement;
+    const btnRemove = taskItem.querySelector(".remove-task");
+    taskItem.classList.remove("focus");
+    btnRemove.style.opacity = "0";
+    setTimeout(() => {
+      btnRemove.setAttribute("disabled", "true");
+    }, 100);
+    this.setTasksListToStore();
+  };
 
   createTaskEventHandler = () => {
     const inputDescription = document.querySelector("#inputTaskDescription");
