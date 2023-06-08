@@ -2,34 +2,32 @@ class ToDoList {
   constructor() {
     this.tasksList = [];
   }
-  
+
   getTasksListFromStore = () => {
-    const tasks = localStorage.getItem("tasks-list");
+    const tasks = localStorage.getItem('tasks-list');
     if (tasks) {
       this.tasksList = [...JSON.parse(tasks)];
     }
   };
-  
+
   setTasksListToStore = () => {
-    localStorage.setItem("tasks-list", JSON.stringify(this.tasksList));
+    localStorage.setItem('tasks-list', JSON.stringify(this.tasksList));
   };
 
   setTasksIds = () => {
-    const tasks = this.tasksList.map((task, index) => {
-      return {
-        description: task.description,
-        completed: task.completed,
-        id: index + 1,
-      };
-    });
+    const tasks = this.tasksList.map((task, index) => ({
+      description: task.description,
+      completed: task.completed,
+      id: index + 1,
+    }));
     this.tasksList = [...tasks];
   };
 
   markUpTask = (task) => `
-    <li class="task ${task.completed ? "completed" : ""}" data-index="${task.id}">
+    <li class="task ${task.completed ? 'completed' : ''}" data-index="${task.id}">
       <div class="task-content">
         <div class="mark-task">
-          <input type="checkbox" id="task-${task.id}-status" ${task.completed ? "checked" : ""}>
+          <input type="checkbox" id="task-${task.id}-status" ${task.completed ? 'checked' : ''}>
           <label for="task-${task.id}-status"></label>
         </div>
         <h3 class="task-description" contenteditable="true">${
@@ -51,7 +49,7 @@ class ToDoList {
 
   renderTasksList = () => {
     const listItems = this.tasksList.map((task) => this.markUpTask(task));
-    document.querySelector("#to-do-list").innerHTML = listItems.join("");
+    document.querySelector('#to-do-list').innerHTML = listItems.join('');
     this.generalEventHandlers();
   };
 
@@ -65,7 +63,7 @@ class ToDoList {
         id,
       };
       this.tasksList.push(newTask);
-      inputDesc.value = "";
+      inputDesc.value = '';
       inputDesc.focus();
       this.setTasksListToStore();
       this.renderTasksList();
@@ -75,7 +73,7 @@ class ToDoList {
   updateTask = (event) => {
     const taskItem = event.target;
     const taskId = taskItem.parentElement.parentElement.dataset.index;
-    const index = parseInt(taskId) - 1;
+    const index = Number(taskId) - 1;
     const taskDescription = taskItem.innerText;
     this.tasksList[index].description = taskDescription;
   };
@@ -83,7 +81,7 @@ class ToDoList {
   deleteTask = (event) => {
     const taskBtnRemove = event.target;
     const taskItem = taskBtnRemove.parentElement;
-    const taskId = parseInt(taskItem.dataset.index);
+    const taskId = Number(taskItem.dataset.index);
     if (this.tasksList.length > 0) {
       const newTaskList = this.tasksList.filter((task) => task.id !== taskId);
       this.tasksList = [...newTaskList];
@@ -95,46 +93,46 @@ class ToDoList {
 
   onTaskFocus = (event) => {
     const taskItem = event.target.parentElement.parentElement;
-    const btnRemove = taskItem.querySelector(".remove-task");
-    taskItem.classList.add("focus");
-    btnRemove.style.opacity = "1";
-    btnRemove.removeAttribute("disabled");
+    const btnRemove = taskItem.querySelector('.remove-task');
+    taskItem.classList.add('focus');
+    btnRemove.style.opacity = '1';
+    btnRemove.removeAttribute('disabled');
   };
 
   onTaskFocusOut = (event) => {
     const taskItem = event.target.parentElement.parentElement;
-    const btnRemove = taskItem.querySelector(".remove-task");
-    taskItem.classList.remove("focus");
-    btnRemove.style.opacity = "0";
+    const btnRemove = taskItem.querySelector('.remove-task');
+    taskItem.classList.remove('focus');
+    btnRemove.style.opacity = '0';
     setTimeout(() => {
-      btnRemove.setAttribute("disabled", "true");
+      btnRemove.setAttribute('disabled', 'true');
     }, 100);
     this.setTasksListToStore();
   };
 
   createTaskEventHandler = () => {
-    const inputDescription = document.querySelector("#inputTaskDescription");
-    const btnAddTask = document.querySelector("#btnAddTask");
-    inputDescription.addEventListener("keydown", (event) => {
-      if (event.code === "Enter") {
+    const inputDescription = document.querySelector('#inputTaskDescription');
+    const btnAddTask = document.querySelector('#btnAddTask');
+    inputDescription.addEventListener('keydown', (event) => {
+      if (event.code === 'Enter') {
         this.createTask(inputDescription);
       }
     });
-    btnAddTask.addEventListener("click", () => {
+    btnAddTask.addEventListener('click', () => {
       this.createTask(inputDescription);
     });
   };
 
-  generalEventHandlers = function() {
-    const allTaskDescription = document.querySelectorAll(".task-description");
-    const allTaskBtnRemove = document.querySelectorAll(".remove-task");
+  generalEventHandlers() {
+    const allTaskDescription = document.querySelectorAll('.task-description');
+    const allTaskBtnRemove = document.querySelectorAll('.remove-task');
     allTaskDescription.forEach((task) => {
-      task.addEventListener("keyup", this.updateTask);
-      task.addEventListener("focusin", this.onTaskFocus);
-      task.addEventListener("focusout", this.onTaskFocusOut);
+      task.addEventListener('keyup', this.updateTask);
+      task.addEventListener('focusin', this.onTaskFocus);
+      task.addEventListener('focusout', this.onTaskFocusOut);
     });
     allTaskBtnRemove.forEach((btnRemove) => {
-      btnRemove.addEventListener("click", this.deleteTask);
+      btnRemove.addEventListener('click', this.deleteTask);
     });
   }
 

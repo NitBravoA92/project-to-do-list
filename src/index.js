@@ -3,5 +3,3 @@ import './style.css';
 
 const toDoListApp = new ToDoList();
 toDoListApp.init();
-
-
