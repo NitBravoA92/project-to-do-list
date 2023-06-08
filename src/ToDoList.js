@@ -89,4 +89,10 @@ class ToDoList {
     renderTasksList();
     createTaskEventHandler();
   }
+
+  init = () => {
+    this.listTasks();
+  }
 }
+
+export default ToDoList;
