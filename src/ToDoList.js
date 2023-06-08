@@ -80,6 +80,19 @@ class ToDoList {
     this.tasksList[index].description = taskDescription;
   };
 
+  deleteTask = (event) => {
+    const taskBtnRemove = event.target;
+    const taskItem = taskBtnRemove.parentElement;
+    const taskId = parseInt(taskItem.dataset.index);
+    if (this.tasksList.length > 0) {
+      const newTaskList = this.tasksList.filter((task) => task.id !== taskId);
+      this.tasksList = [...newTaskList];
+      this.setTasksIds();
+      this.setTasksListToStore();
+      this.renderTasksList();
+    }
+  };
+
   onTaskFocus = (event) => {
     const taskItem = event.target.parentElement.parentElement;
     const btnRemove = taskItem.querySelector(".remove-task");
@@ -117,6 +130,11 @@ class ToDoList {
     const allTaskBtnRemove = document.querySelectorAll(".remove-task");
     allTaskDescription.forEach((task) => {
       task.addEventListener("keyup", this.updateTask);
+      task.addEventListener("focusin", this.onTaskFocus);
+      task.addEventListener("focusout", this.onTaskFocusOut);
+    });
+    allTaskBtnRemove.forEach((btnRemove) => {
+      btnRemove.addEventListener("click", this.deleteTask);
     });
   }
 
