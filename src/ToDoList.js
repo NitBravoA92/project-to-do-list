@@ -134,7 +134,10 @@ class ToDoList {
   };
 
   listTasks = () => {
-    this.tasksList = cloneCollection(JSON.parse(retrieveLocalStorage('tasks-list')));
+    const getAllData = retrieveLocalStorage('tasks-list');
+    this.tasksList = !isEmpty(getAllData)
+      ? cloneCollection(JSON.parse(getAllData))
+      : [];
     this.renderTasksList();
     this.createTaskEventHandler();
     this.clearAllEventHandler();
