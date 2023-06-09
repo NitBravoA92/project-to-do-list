@@ -57,7 +57,7 @@
 
 This is a video demonstration of the functionality of the application in different browsers:
 
-- [To Do List App - Video Demo](https://www.loom.com/share/fc52acc581a545e48f557a4ccb356d7d)
+- [To Do List App - Video Demo](https://www.loom.com/share/8eb665b894604b07be848f050a14bbd3)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
