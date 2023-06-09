@@ -1,4 +1,4 @@
-import { isEmpty, markUpTask, saveLocalStorage, retrieveLocalStorage } from './Utils.js';
+import { isEmpty, markUpTask, saveLocalStorage, retrieveLocalStorage, cloneCollection } from './Utils.js';
 
 class ToDoList {
   constructor() {
@@ -11,7 +11,7 @@ class ToDoList {
       completed: task.completed,
       index: i + 1,
     }));
-    this.tasksList = [...tasks];
+    this.tasksList = cloneCollection(tasks);
   };
 
   renderTasksList = () => {
@@ -65,7 +65,7 @@ class ToDoList {
       const newTaskList = this.tasksList.filter(
         (task) => task.index !== taskId
       );
-      this.tasksList = [...newTaskList];
+      this.tasksList = cloneCollection(newTaskList);
       this.setTasksIds();
       saveLocalStorage("tasks-list", JSON.stringify(this.tasksList));
       this.renderTasksList();
@@ -75,7 +75,7 @@ class ToDoList {
   deleteAllCompletedTasks = () => {
     if (!isEmpty(this.tasksList)) {
       const newTasksList = this.tasksList.filter((task) => !task.completed);
-      this.tasksList = [...newTasksList];
+      this.tasksList = cloneCollection(newTasksList);
       this.setTasksIds();
       saveLocalStorage("tasks-list", JSON.stringify(this.tasksList));
       this.renderTasksList();
@@ -140,7 +140,7 @@ class ToDoList {
   };
 
   listTasks = () => {
-    this.tasksList = [...JSON.parse(retrieveLocalStorage("tasks-list"))];
+    this.tasksList = cloneCollection(JSON.parse(retrieveLocalStorage("tasks-list")));
     this.renderTasksList();
     this.createTaskEventHandler();
     this.clearAllEventHandler();
