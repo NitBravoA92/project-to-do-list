@@ -1,25 +1,25 @@
 export const retrieveLocalStorage = (key) => {
   const data = localStorage.getItem(key);
   return data || null;
-}
-export const saveLocalStorage = (key, value) => localStorage.setItem(key, value); 
+};
+export const saveLocalStorage = (key, value) => localStorage.setItem(key, value);
 export const isEmpty = (collection) => collection.length === 0;
 export const markUpTask = (task) => `
-<li class="task ${task.completed ? "completed" : ""}" data-index="${
-task.index
+<li class="task ${task.completed ? 'completed' : ''}" data-index="${
+  task.index
 }">
   <div class="task-content">
     <div class="mark-task">
       <input type="checkbox" id="task-${
-        task.index
-      }-status" class="task-check-status" ${
-task.completed ? "checked" : ""
+  task.index
+}-status" class="task-check-status" ${
+  task.completed ? 'checked' : ''
 }>
       <label for="task-${task.index}-status"></label>
     </div>
     <h3 class="task-description" contenteditable="true">${
-      task.description
-    }</h3>
+  task.description
+}</h3>
   </div>
   <div class="task-options">
     <div class="drag-icon">
