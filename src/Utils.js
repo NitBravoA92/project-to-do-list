@@ -33,3 +33,4 @@ task.completed ? "checked" : ""
   </button>
 </li>
 `;
+export const cloneCollection = (collection) => [...collection];
