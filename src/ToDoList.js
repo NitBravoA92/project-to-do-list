@@ -175,8 +175,13 @@ class ToDoList {
     this.clearAllEventHandler();
   }
 
+  refreshListEventHandler = () => {
+    document.querySelector('#refresh').addEventListener('click', this.listTasks);
+  }
+
   init = () => {
     this.listTasks();
+    this.refreshListEventHandler();
   }
 }
 
