@@ -34,4 +34,4 @@ export const markUpTask = (task) => `
 </li>
 `;
 export const cloneCollection = (collection) => [...collection];
-export const generateTask = (description, completed, index) => ({ description, completed, index });
+export const taskObj = (description, completed, index) => ({ description, completed, index });
