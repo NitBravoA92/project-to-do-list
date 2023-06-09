@@ -1,4 +1,4 @@
-import { isEmpty, markUpTask, saveLocalStorage, retrieveLocalStorage, cloneCollection } from './Utils.js';
+import { isEmpty, markUpTask, saveLocalStorage, retrieveLocalStorage, cloneCollection, generateTask } from './Utils.js';
 
 class ToDoList {
   constructor() {
@@ -6,11 +6,7 @@ class ToDoList {
   }
 
   setTasksIds = () => {
-    const tasks = this.tasksList.map((task, i) => ({
-      description: task.description,
-      completed: task.completed,
-      index: i + 1,
-    }));
+    const tasks = this.tasksList.map((task, i) => generateTask(task.description, task.completed, i + 1));
     this.tasksList = cloneCollection(tasks);
   };
 
@@ -26,11 +22,7 @@ class ToDoList {
     const inputDescription = inputDesc.value;
     if (!isEmpty(inputDescription)) {
       const id = this.tasksList.length + 1;
-      const newTask = {
-        description: inputDescription,
-        completed: false,
-        index: id,
-      };
+      const newTask = generateTask(inputDescription, false, id);
       this.tasksList.push(newTask);
       inputDesc.value = "";
       inputDesc.focus();
