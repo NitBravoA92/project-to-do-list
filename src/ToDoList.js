@@ -1,5 +1,5 @@
 import {
-  isEmpty, markUpTask, saveLocalStorage, retrieveLocalStorage, cloneCollection, generateTask,
+  isEmpty, markUpTask, saveLocalStorage, retrieveLocalStorage, cloneCollection, taskObj,
 } from './Utils.js';
 
 class ToDoList {
@@ -8,7 +8,7 @@ class ToDoList {
   }
 
   setTasksIds = () => {
-    const tasks = this.tasksList.map((task, i) => generateTask(task.description, task.completed, i + 1));
+    const tasks = this.tasksList.map((task, i) => taskObj(task.description, task.completed, i + 1));
     this.tasksList = cloneCollection(tasks);
   };
 
@@ -24,7 +24,7 @@ class ToDoList {
     const inputDescription = inputDesc.value;
     if (!isEmpty(inputDescription)) {
       const id = this.tasksList.length + 1;
-      const newTask = generateTask(inputDescription, false, id);
+      const newTask = taskObj(inputDescription, false, id);
       this.tasksList.push(newTask);
       inputDesc.value = '';
       inputDesc.focus();
