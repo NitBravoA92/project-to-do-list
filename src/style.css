@@ -83,6 +83,7 @@ main {
   cursor: pointer;
   display: flex;
   align-items: center;
+  rotate: 90deg;
 }
 
 #new-task-entry #inputTaskDescription {
