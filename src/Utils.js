@@ -1,0 +1,1 @@
+export const isEmpty = (collection) => collection.length === 0;
