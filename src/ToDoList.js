@@ -1,3 +1,5 @@
+import { isEmpty } from './Utils.js';
+
 class ToDoList {
   constructor() {
     this.tasksList = [];
@@ -56,14 +58,14 @@ class ToDoList {
   renderTasksList = () => {
     const listItems = this.tasksList.map((task) => this.markUpTask(task));
     document.querySelector("#to-do-list").innerHTML = listItems.join("");
-    if (this.tasksList.length > 0) {
+    if (!isEmpty(this.tasksList)) {
       this.generalEventHandlers();
     }
   };
 
   createTask = (inputDesc) => {
     const inputDescription = inputDesc.value;
-    if (inputDescription.length > 0) {
+    if (!isEmpty(inputDescription)) {
       const id = this.tasksList.length + 1;
       const newTask = {
         description: inputDescription,
@@ -100,7 +102,7 @@ class ToDoList {
     const taskBtnRemove = event.target;
     const taskItem = taskBtnRemove.parentElement;
     const taskId = Number(taskItem.dataset.index);
-    if (this.tasksList.length > 0) {
+    if (!isEmpty(this.tasksList)) {
       const newTaskList = this.tasksList.filter(
         (task) => task.index !== taskId
       );
@@ -112,7 +114,7 @@ class ToDoList {
   };
 
   deleteAllCompletedTasks = () => {
-    if (this.tasksList.length > 0) {
+    if (!isEmpty(this.tasksList)) {
       const newTasksList = this.tasksList.filter((task) => !task.completed);
       this.tasksList = [...newTasksList];
       this.setTasksIds();
