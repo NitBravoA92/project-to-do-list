@@ -1,4 +1,4 @@
-import { isEmpty, markUpTask } from './Utils.js';
+import { isEmpty, markUpTask, saveLocalStorage } from './Utils.js';
 
 class ToDoList {
   constructor() {
@@ -10,10 +10,6 @@ class ToDoList {
     if (tasks) {
       this.tasksList = [...JSON.parse(tasks)];
     }
-  };
-
-  setTasksListToStore = () => {
-    localStorage.setItem("tasks-list", JSON.stringify(this.tasksList));
   };
 
   setTasksIds = () => {
@@ -45,7 +41,7 @@ class ToDoList {
       this.tasksList.push(newTask);
       inputDesc.value = "";
       inputDesc.focus();
-      this.setTasksListToStore();
+      saveLocalStorage("tasks-list", JSON.stringify(this.tasksList));
       this.renderTasksList();
     }
   };
@@ -64,7 +60,7 @@ class ToDoList {
     const taskId = taskItem.dataset.index;
     const index = Number(taskId) - 1;
     this.tasksList[index].completed = taskCompleted;
-    this.setTasksListToStore();
+    saveLocalStorage("tasks-list", JSON.stringify(this.tasksList));
     taskItem.classList.toggle("completed");
   };
 
@@ -78,7 +74,7 @@ class ToDoList {
       );
       this.tasksList = [...newTaskList];
       this.setTasksIds();
-      this.setTasksListToStore();
+      saveLocalStorage("tasks-list", JSON.stringify(this.tasksList));
       this.renderTasksList();
     }
   };
@@ -88,7 +84,7 @@ class ToDoList {
       const newTasksList = this.tasksList.filter((task) => !task.completed);
       this.tasksList = [...newTasksList];
       this.setTasksIds();
-      this.setTasksListToStore();
+      saveLocalStorage("tasks-list", JSON.stringify(this.tasksList));
       this.renderTasksList();
     }
   };
@@ -111,7 +107,7 @@ class ToDoList {
       btnRemove.setAttribute("disabled", "true");
       btnRemove.style.display = "none";
     }, 500);
-    this.setTasksListToStore();
+    saveLocalStorage("tasks-list", JSON.stringify(this.tasksList));
   };
 
   createTaskEventHandler = () => {
