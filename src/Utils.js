@@ -34,3 +34,4 @@ task.completed ? "checked" : ""
 </li>
 `;
 export const cloneCollection = (collection) => [...collection];
+export const generateTask = (description, completed, index) => ({ description, completed, index });
