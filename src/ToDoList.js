@@ -103,6 +103,16 @@ class ToDoList {
     }
   };
 
+  deleteAllCompletedTasks = () => {
+    if (this.tasksList.length > 0) {
+      const newTasksList = this.tasksList.filter((task) => !task.completed);
+      this.tasksList = [...newTasksList];
+      this.setTasksIds();
+      this.setTasksListToStore();
+      this.renderTasksList();
+    }
+  }
+
   onTaskFocus = (event) => {
     const taskItem = event.target.parentElement.parentElement;
     const btnRemove = taskItem.querySelector('.remove-task');
@@ -154,10 +164,15 @@ class ToDoList {
     });
   }
 
+  clearAllEventHandler = () => {
+    document.querySelector('#btn-clear-list').addEventListener('click', this.deleteAllCompletedTasks);
+  }
+
   listTasks = () => {
     this.getTasksListFromStore();
     this.renderTasksList();
     this.createTaskEventHandler();
+    this.clearAllEventHandler();
   }
 
   init = () => {
