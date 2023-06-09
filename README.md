@@ -57,7 +57,7 @@
 
 This is a video demonstration of the functionality of the application in different browsers:
 
-- [To Do List App - Video Demo](https://www.loom.com/share/fc52acc581a545e48f557a4ccb356d7d)
+- [To Do List App - Video Demo](https://www.loom.com/share/8eb665b894604b07be848f050a14bbd3)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -152,7 +152,7 @@ When all the code changes are ready, run the following command to have webpack g
 
 - [x] **Create a section to list the tasks of the To Do List**
 - [x] **Create functionality to add and remove tasks from the To Do List**
-- [ ] **Add interactivity to the task list: Mark tasks as complete, reordering a task using drag-and-drop**
+- [x] **Add interactivity to the task list: Mark tasks as complete, reordering a task using drag-and-drop**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

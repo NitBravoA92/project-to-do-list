@@ -83,6 +83,7 @@ main {
   cursor: pointer;
   display: flex;
   align-items: center;
+  rotate: 90deg;
 }
 
 #new-task-entry #inputTaskDescription {
@@ -126,6 +127,11 @@ main {
   margin-right: 0.7rem;
 }
 
+#app #to-do-list .task .mark-task .task-check-status {
+  width: 1rem;
+  height: 1rem;
+}
+
 #app #to-do-list .task .task-description {
   font-weight: 300;
   width: 100%;
@@ -134,6 +140,16 @@ main {
 
 #app #to-do-list .task.focus .task-description {
   outline: none;
+}
+
+#app #to-do-list .task.completed .task-description {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+#app #to-do-list .task.focus.completed .task-description {
+  opacity: 1;
+  text-decoration: none;
 }
 
 #app #to-do-list .task .task-options {
