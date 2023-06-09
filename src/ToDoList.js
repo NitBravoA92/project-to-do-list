@@ -5,13 +5,6 @@ class ToDoList {
     this.tasksList = [];
   }
 
-  getTasksListFromStore = () => {
-    const tasks = localStorage.getItem("tasks-list");
-    if (tasks) {
-      this.tasksList = [...JSON.parse(tasks)];
-    }
-  };
-
   setTasksIds = () => {
     const tasks = this.tasksList.map((task, i) => ({
       description: task.description,
@@ -147,7 +140,7 @@ class ToDoList {
   };
 
   listTasks = () => {
-    this.getTasksListFromStore();
+    this.tasksList = [...JSON.parse(retrieveLocalStorage("tasks-list"))];
     this.renderTasksList();
     this.createTaskEventHandler();
     this.clearAllEventHandler();
