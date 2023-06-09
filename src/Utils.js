@@ -1,3 +1,10 @@
+export const retrieveLocalStorage = (key) => {
+  const data = localStorage.getItem(key);
+  if (data) {
+    return [...JSON.parse(data)];
+  }
+  return null;
+}
 export const saveLocalStorage = (key, value) => localStorage.setItem(key, value); 
 export const isEmpty = (collection) => collection.length === 0;
 export const markUpTask = (task) => `
