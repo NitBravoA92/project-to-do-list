@@ -135,7 +135,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ToDoList_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ToDoList.js */ \"./src/ToDoList.js\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\n\n\nconst toDoListApp = new _ToDoList_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\ntoDoListApp.init();\n\n\n//# sourceURL=webpack://project-to-do-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _ToDoList_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ToDoList.js */ \"./src/ToDoList.js\");\n/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.css */ \"./src/style.css\");\n\r\n\r\n\r\nconst toDoListApp = new _ToDoList_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\r\ntoDoListApp.init();\r\n\n\n//# sourceURL=webpack://project-to-do-list/./src/index.js?");
 
 /***/ })
 
