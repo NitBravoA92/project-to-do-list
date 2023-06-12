@@ -17,24 +17,29 @@ class ToDoList {
     });
   };
 
-  renderTasksList = () => {
+  insertTaskInDom = (newTask) => {
+    const newItem = markUpTask(newTask);
+    document.querySelector('#to-do-list').innerHTML += newItem;
+  };
+
+  renderAllTasks = () => {
     if (!isEmpty(this.tasksList)) {
-      const listItems = this.tasksList.map((task) => markUpTask(task));
-      document.querySelector('#to-do-list').innerHTML = listItems.join('');
-      this.generalEventHandlers();
+      const listItems = this.tasksList.forEach((task) => this.insertTaskInDom(task));
+      this.loadTasksEventHandlers();
     }
   };
 
   createTask = (inputDesc) => {
-    const inputDescription = inputDesc.value;
-    if (!isEmpty(inputDescription)) {
+    const inputTaskDescription = inputDesc.value;
+    if (!isEmpty(inputTaskDescription)) {
       const id = this.tasksList.length + 1;
-      const newTask = taskObj(inputDescription, false, id);
+      const newTask = taskObj(inputTaskDescription, false, id);
       this.tasksList.push(newTask);
       inputDesc.value = '';
       inputDesc.focus();
       saveLocalStorage('tasks-list', JSON.stringify(this.tasksList));
-      this.renderTasksList();
+      this.insertTaskInDom(newTask);
+      this.loadTasksEventHandlers();
     }
   };
 
@@ -122,20 +127,20 @@ class ToDoList {
     });
   };
 
-  generalEventHandlers() {
+  loadTasksEventHandlers() {
     const allTaskDescription = document.querySelectorAll('.task-description');
     const allTaskBtnRemove = document.querySelectorAll('.remove-task');
     const allTaskCheckbox = document.querySelectorAll('.task-check-status');
-    allTaskDescription.forEach((task) => {
-      task.addEventListener('keyup', this.updateTask);
-      task.addEventListener('focusin', this.onTaskFocus);
-      task.addEventListener('focusout', this.onTaskFocusOut);
+    allTaskDescription.forEach((inputDesc) => {
+      inputDesc.addEventListener('keyup', this.updateTask);
+      inputDesc.addEventListener('focusin', this.onTaskFocus);
+      inputDesc.addEventListener('focusout', this.onTaskFocusOut);
     });
     allTaskBtnRemove.forEach((btnRemove) => {
       btnRemove.addEventListener('click', this.deleteTask);
     });
-    allTaskCheckbox.forEach((inputStatus) => {
-      inputStatus.addEventListener('change', this.UpdateTaskStatus);
+    allTaskCheckbox.forEach((checkboxStatus) => {
+      checkboxStatus.addEventListener('change', this.UpdateTaskStatus);
     });
   }
 
@@ -150,7 +155,7 @@ class ToDoList {
     this.tasksList = !isEmpty(getAllData)
       ? cloneCollection(JSON.parse(getAllData))
       : [];
-    this.renderTasksList();
+    this.renderAllTasks();
     this.createTaskEventHandler();
     this.clearAllEventHandler();
   };
