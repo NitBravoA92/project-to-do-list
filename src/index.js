@@ -1,5 +1,9 @@
-import ToDoList from './ToDoList.js';
+import { listTasks, refreshListEventHandler } from './modules/listTask.js';
 import './style.css';
 
-const toDoListApp = new ToDoList();
-toDoListApp.init();
+const ToDoList = () => {
+  listTasks();
+  refreshListEventHandler();
+};
+
+ToDoList();

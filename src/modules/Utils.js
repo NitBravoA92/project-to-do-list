@@ -1,6 +1,8 @@
 export const retrieveLocalStorage = (key) => {
-  const data = localStorage.getItem(key);
-  return data || '';
+  const data = localStorage.getItem(key)
+              ? JSON.parse(localStorage.getItem(key))
+              : [];
+  return data;
 };
 export const saveLocalStorage = (key, value) => localStorage.setItem(key, value);
 export const isEmpty = (collection) => collection.length === 0;
