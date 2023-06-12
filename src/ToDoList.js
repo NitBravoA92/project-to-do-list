@@ -8,14 +8,19 @@ class ToDoList {
   }
 
   setTasksIds = () => {
-    const tasks = this.tasksList.map((task, i) => taskObj(task.description, task.completed, i + 1));
-    this.tasksList = cloneCollection(tasks);
+    const allTasksLi = document.querySelectorAll('.task');
+    let newIndex = 0;
+    this.tasksList.forEach((task, i) => {
+      newIndex = i + 1;
+      task.index = newIndex;
+      allTasksLi[i].dataset.index = newIndex;
+    });
   };
 
   renderTasksList = () => {
-    const listItems = this.tasksList.map((task) => markUpTask(task));
-    document.querySelector('#to-do-list').innerHTML = listItems.join('');
     if (!isEmpty(this.tasksList)) {
+      const listItems = this.tasksList.map((task) => markUpTask(task));
+      document.querySelector('#to-do-list').innerHTML = listItems.join('');
       this.generalEventHandlers();
     }
   };
@@ -55,24 +60,31 @@ class ToDoList {
     const taskBtnRemove = event.target;
     const taskItem = taskBtnRemove.parentElement;
     const taskId = Number(taskItem.dataset.index);
-    if (!isEmpty(this.tasksList)) {
-      const newTaskList = this.tasksList.filter(
-        (task) => task.index !== taskId,
-      );
-      this.tasksList = cloneCollection(newTaskList);
-      this.setTasksIds();
-      saveLocalStorage('tasks-list', JSON.stringify(this.tasksList));
-      this.renderTasksList();
-    }
+    const newTaskList = this.tasksList.filter(
+      (task) => task.index !== taskId,
+    );
+    taskItem.remove();
+    this.tasksList = cloneCollection(newTaskList);
+    this.setTasksIds();
+    saveLocalStorage('tasks-list', JSON.stringify(this.tasksList));
   };
 
   deleteAllCompletedTasks = () => {
-    if (!isEmpty(this.tasksList)) {
-      const newTasksList = this.tasksList.filter((task) => !task.completed);
-      this.tasksList = cloneCollection(newTasksList);
+    if(!isEmpty(this.tasksList)) {
+      let newElements = [];
+      let task = null;
+      const allTasksLi = document.querySelectorAll('.task');
+      for (let i = 0; i < this.tasksList.length; i+=1) {
+        task = this.tasksList[i];
+        if(task.completed) {
+          allTasksLi[i].remove();
+          continue;
+        }
+        newElements.push(task);
+      }
+      this.tasksList = cloneCollection(newElements);
       this.setTasksIds();
       saveLocalStorage('tasks-list', JSON.stringify(this.tasksList));
-      this.renderTasksList();
     }
   };
 
