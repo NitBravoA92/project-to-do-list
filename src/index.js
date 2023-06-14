@@ -1,5 +1,16 @@
-import ToDoList from './ToDoList.js';
+import { listTasks, refreshListEventHandler } from './modules/listTask.js';
+import { insertImgMarkup } from './modules/Utils.js';
+import enterIcon from './img/enterIcon.svg';
+import refreshIcon from './img/refreshIcon.svg';
 import './style.css';
 
-const toDoListApp = new ToDoList();
-toDoListApp.init();
+const ToDoList = () => {
+  const addBtn = document.querySelector('#btnAddTask');
+  const refreshBtn = document.querySelector('#refresh');
+  insertImgMarkup(addBtn, enterIcon, 'left arrow icon');
+  insertImgMarkup(refreshBtn, refreshIcon, 'refresh icon');
+  listTasks();
+  refreshListEventHandler();
+};
+
+ToDoList();
