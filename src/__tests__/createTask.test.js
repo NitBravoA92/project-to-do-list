@@ -26,3 +26,14 @@ describe('Create new tasks module', () => {
     expect(listTasks).toHaveLength(4);
   })
 })
+
+describe('Insert in localStorage', () => {
+  it('save one task object', () => {
+    const mockObj = [{ index: 1, description: 'First Task content', completed: false }];
+    const mockKey = 'task-list';
+
+    saveLocalStorage(mockKey, JSON.stringify(mockObj));
+    
+    expect(retrieveLocalStorage(mockKey)).toEqual(mockObj);
+  })
+})
