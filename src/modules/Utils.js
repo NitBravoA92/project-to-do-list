@@ -2,8 +2,8 @@ import trashIcon from '../img/trashIcon.svg';
 
 export const retrieveLocalStorage = (key) => {
   const data = localStorage.getItem(key)
-              ? JSON.parse(localStorage.getItem(key))
-              : [];
+    ? JSON.parse(localStorage.getItem(key))
+    : [];
   return data;
 };
 export const saveLocalStorage = (key, value) => localStorage.setItem(key, value);

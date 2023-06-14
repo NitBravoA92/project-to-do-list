@@ -9,14 +9,13 @@
 <body>
   <main>
     <section id="app">
-      <h1 id="title">
-        <span>Today's To Do</span> 
+      <h1 id="title"><span>Today's To Do</span> 
         <button type="button" id="refresh"></button>
       </h1>
-      <div id="new-task-entry">
+      <form id="new-task-entry">
         <input type="text" id="inputTaskDescription" placeholder="Add to your list...">
-        <button type="button" id="btnAddTask"></button>
-      </div>
+        <button type="submit" id="btnAddTask"></button>
+      </form>
       <ul id="to-do-list"></ul>
       <div id="clear-all-container">
         <button type="button" id="btn-clear-list">Clear all completed</button>

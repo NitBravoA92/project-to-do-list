@@ -1,9 +1,9 @@
-import { 
-  retrieveLocalStorage, saveLocalStorage, taskObj, isEmpty 
+import {
+  retrieveLocalStorage, saveLocalStorage, taskObj, isEmpty,
 } from './Utils.js';
-import { 
-  insertTaskInDom, 
-  loadTasksEventHandlers 
+import {
+  insertTaskInDom,
+  loadTasksEventHandlers,
 } from './renderTask.js';
 
 export const createTask = (inputDesc) => {
@@ -22,14 +22,9 @@ export const createTask = (inputDesc) => {
 };
 
 export const createTaskEventHandler = () => {
-  const inputDescription = document.querySelector('#inputTaskDescription');
-  const btnAddTask = document.querySelector('#btnAddTask');
-  inputDescription.addEventListener('keydown', (event) => {
-    if (event.code === 'Enter') {
-      createTask(inputDescription);
-    }
-  });
-  btnAddTask.addEventListener('click', () => {
-    createTask(inputDescription);
+  const taskForm = document.querySelector('#new-task-entry');
+  taskForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    createTask(taskForm.inputTaskDescription);
   });
 };

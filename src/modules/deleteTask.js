@@ -1,7 +1,7 @@
-import { 
-  retrieveLocalStorage, saveLocalStorage, cloneCollection, isEmpty 
+import {
+  retrieveLocalStorage, saveLocalStorage, cloneCollection, isEmpty,
 } from './Utils.js';
-import { setTasksIds } from './renderTask.js';
+import { setTasksIds } from './updateTask.js';
 
 export const deleteTask = (taskBtnRemove) => {
   const taskItem = taskBtnRemove.parentElement;
@@ -18,17 +18,17 @@ export const deleteTask = (taskBtnRemove) => {
 
 export const deleteAllCompletedTasks = () => {
   let tasksList = retrieveLocalStorage('tasks-list');
-  if(!isEmpty(tasksList)) {
-    let newElements = [];
+  if (!isEmpty(tasksList)) {
+    const newElements = [];
     let task = null;
     const allTasksLi = document.querySelectorAll('.task');
-    for (let i = 0; i < tasksList.length; i+=1) {
+    for (let i = 0; i < tasksList.length; i += 1) {
       task = tasksList[i];
-      if(task.completed) {
+      if (task.completed) {
         allTasksLi[i].remove();
-        continue;
+      } else {
+        newElements.push(task);
       }
-      newElements.push(task);
     }
     tasksList = cloneCollection(newElements);
     setTasksIds(tasksList);
@@ -36,15 +36,15 @@ export const deleteAllCompletedTasks = () => {
   }
 };
 
-export const deleteEventHandler = () => { 
+export const deleteEventHandler = () => {
   const allTaskBtnRemove = document.querySelectorAll('.remove-task');
-    allTaskBtnRemove.forEach((btnRemove) => {
-      btnRemove.addEventListener('click', (event) => {
-        const btnRemove = event.target;
-        deleteTask(btnRemove);
-      });
+  allTaskBtnRemove.forEach((btnRemove) => {
+    btnRemove.addEventListener('click', (event) => {
+      const btnRemove = event.target;
+      deleteTask(btnRemove);
     });
-}
+  });
+};
 
 export const clearAllEventHandler = () => {
   document

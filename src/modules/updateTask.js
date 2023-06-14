@@ -1,6 +1,16 @@
-import { 
-  retrieveLocalStorage, saveLocalStorage 
+import {
+  retrieveLocalStorage, saveLocalStorage,
 } from './Utils.js';
+
+export const setTasksIds = (tasksList) => {
+  const allTasksLi = document.querySelectorAll('.task');
+  let newIndex = 0;
+  tasksList.forEach((task, i) => {
+    newIndex = i + 1;
+    task.index = newIndex;
+    allTasksLi[i].dataset.index = newIndex;
+  });
+};
 
 const updateTask = (taskItem) => {
   const taskId = taskItem.parentElement.parentElement.dataset.index;
@@ -42,7 +52,7 @@ const onTaskFocusOut = (event) => {
   }, 500);
 };
 
-export const updateFocusEventHandlers = () => { 
+export const updateFocusEventHandlers = () => {
   const allTaskDescription = document.querySelectorAll('.task-description');
   const allTaskCheckbox = document.querySelectorAll('.task-check-status');
   allTaskDescription.forEach((inputDesc) => {
@@ -59,4 +69,4 @@ export const updateFocusEventHandlers = () => {
       updateTaskStatus(checkbox);
     });
   });
-}
+};

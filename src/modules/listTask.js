@@ -2,7 +2,7 @@ import { renderAllTasks } from './renderTask.js';
 import { createTaskEventHandler } from './createTask.js';
 import { clearAllEventHandler } from './deleteTask.js';
 import {
-  isEmpty, retrieveLocalStorage, cloneCollection
+  isEmpty, retrieveLocalStorage, cloneCollection,
 } from './Utils.js';
 
 export const listTasks = () => {

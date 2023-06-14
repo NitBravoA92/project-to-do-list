@@ -5,16 +5,6 @@ import { deleteEventHandler } from './deleteTask.js';
 export const loadTasksEventHandlers = () => {
   updateFocusEventHandlers();
   deleteEventHandler();
-}
-
-export const setTasksIds = (tasksList) => {
-  const allTasksLi = document.querySelectorAll('.task');
-  let newIndex = 0;
-  tasksList.forEach((task, i) => {
-    newIndex = i + 1;
-    task.index = newIndex;
-    allTasksLi[i].dataset.index = newIndex;
-  });
 };
 
 export const insertTaskInDom = (newTask) => {
