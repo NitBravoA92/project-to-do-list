@@ -1,1 +1,2 @@
-export const cloneCollection = (collection) => [...collection];
+const cloneCollection = (collection) => [...collection];
+export default cloneCollection;
