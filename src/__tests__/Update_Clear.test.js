@@ -1,13 +1,13 @@
 import { saveLocalStorage } from '../modules/Utils.js';
 import { deleteAllCompletedTasks } from '../modules/deleteTask.js';
-import { updateTask } from '../modules/updateTask.js';
+import { updateTask, updateTaskStatus } from '../modules/updateTask.js';
 
 describe('Clear all completed task', () => {
   let mockObj = [
     { index: 1, description: 'First Task content', completed: false },
     { index: 2, description: 'Second Task content', completed: true },
     { index: 3, description: 'Third Task content', completed: false },
-    { index: 4, description: 'Fourth Task content', completed: true }
+    { index: 4, description: 'Fourth Task content', completed: true },
   ];
   const mockKey = 'task-list';
   saveLocalStorage(mockKey, JSON.stringify(mockObj));
@@ -23,9 +23,9 @@ describe('Clear all completed task', () => {
     const liElements = document.querySelectorAll('.task');
 
     mockObj = deleteAllCompletedTasks(mockObj, liElements);
-    
+
     const newLiElements = document.querySelectorAll('#to-do-list-remove .task');
-    
+
     expect(newLiElements).toHaveLength(2);
   });
 
@@ -39,12 +39,14 @@ describe('Clear all completed task', () => {
 });
 
 describe('Update task description and change complete status', () => {
-  let mockObj = [
+  const mockObj = [
     { index: 1, description: 'First Task content', completed: false },
     { index: 2, description: 'Second Task content', completed: false },
     { index: 3, description: 'Third Task content', completed: false },
     { index: 4, description: 'Fourth Task content', completed: false },
   ];
+  saveLocalStorage('tasks-list', JSON.stringify(mockObj));
+
   it('Update a task description', () => {
     document.body.innerHTML = `
       <ul id="to-do-list-remove">
@@ -71,5 +73,39 @@ describe('Update task description and change complete status', () => {
     const taskDescriptionUpdated = updateTask(newDescription, 3, mockObj);
 
     expect(taskDescriptionUpdated).toMatch(listDescriptions[2].value);
+  });
+
+  it('Update a task status to true', () => {
+    document.body.innerHTML = `
+      <ul id="to-do-list-remove">
+        <li class="task" data-index="1">
+          <div>
+            <label><input type="checkbox" class="task-check-status"></label>
+          </div>
+        </li>
+        <li class="task" data-index="2">
+          <div>
+            <label><input type="checkbox" class="task-check-status" checked></label>
+          </div>
+        </li>
+        <li class="task" data-index="3">
+          <div>
+            <label><input type="checkbox" class="task-check-status"></label>
+          </div>
+        </li>
+        <li class="task" data-index="4">
+          <div>
+            <label><input type="checkbox" class="task-check-status"></label>
+          </div>
+        </li>
+      </ul>
+    `;
+
+    const taskCheckboxs = document.querySelectorAll('.task-check-status');
+
+    const localStorageUpdated = updateTaskStatus(taskCheckboxs[1], mockObj);
+    mockObj[1].completed = true;
+
+    expect(localStorageUpdated).toEqual(mockObj);
   });
 });
