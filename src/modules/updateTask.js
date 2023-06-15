@@ -18,15 +18,15 @@ export const updateTask = (taskDescription, index, tasksList) => {
   return tasksList[index].description;
 };
 
-const updateTaskStatus = (checkboxElement) => {
+export const updateTaskStatus = (checkboxElement, tasksList) => {
   const taskCompleted = checkboxElement.checked;
   const taskItem = checkboxElement.parentElement.parentElement.parentElement;
   const taskId = taskItem.dataset.index;
   const index = Number(taskId) - 1;
-  const tasksList = retrieveLocalStorage('tasks-list');
   tasksList[index].completed = taskCompleted;
   saveLocalStorage('tasks-list', JSON.stringify(tasksList));
   taskItem.classList.toggle('completed');
+  return retrieveLocalStorage('tasks-list');
 };
 
 const onTaskFocus = (event) => {
@@ -67,7 +67,8 @@ export const updateFocusEventHandlers = () => {
   allTaskCheckbox.forEach((checkboxStatus) => {
     checkboxStatus.addEventListener('change', (event) => {
       const checkbox = event.target;
-      updateTaskStatus(checkbox);
+      const tasksList = retrieveLocalStorage('tasks-list');
+      updateTaskStatus(checkbox, tasksList);
     });
   });
 };
