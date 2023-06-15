@@ -41,6 +41,8 @@
     <li><a href="https://eslint.org/">ESlint.org</a></li>
     <li><a href="https://nodejs.org">Node.js</a></li>
     <li><a href="https://webpack.js.org">Webpack</a></li>
+    <li><a href="https://jestjs.io/docs/getting-started">Jest</a></li>
+    <li><a href="https://babeljs.io/docs/">Babel</a></li>
   </ul>
 </details>
 
@@ -51,6 +53,7 @@
 - **Responsive design**
 - **Use of semantic HTML**
 - **source code packaged with Webpack**
+- **Unit test with jest**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -138,6 +141,11 @@ Javascript Linter
   npx eslint .
 ```
 
+Run test
+```
+  npm run test
+```
+
 This will show you a log with details about errors (if any) and changes that would be necessary to solve those errors and improve the code.
 
 **Note**: Please only modify the HTML, CSS and Javascript files. Do not modify the configuration files of the project.
@@ -155,6 +163,12 @@ When all the code changes are ready, run the following command to have webpack g
 - GitHub: [Nitcelis Bravo](https://github.com/NitBravoA92)
 - Twitter: [@softwareDevOne](https://twitter.com/softwareDevOne)
 - LinkedIn: [Nitcelis Bravo Alcala](https://www.linkedin.com/in/nitcelis-bravo-alcala-b65340158)
+
+👤 **Andrea Manuel**
+
+- GitHub: [@AndreaM2429](https://github.com/AndreaM2429)
+- Twitter: [@twitter](https://twitter.com/AndreaManuelOr1)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/andrea-manuel-2b075026a/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
