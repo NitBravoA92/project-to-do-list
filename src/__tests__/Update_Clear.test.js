@@ -1,5 +1,6 @@
-import { saveLocalStorage, retrieveLocalStorage } from '../modules/Utils.js';
+import { saveLocalStorage } from '../modules/Utils.js';
 import { deleteAllCompletedTasks } from '../modules/deleteTask.js';
+import { updateTask } from '../modules/updateTask.js';
 
 describe('Clear all completed task', () => {
   let mockObj = [
@@ -37,3 +38,38 @@ describe('Clear all completed task', () => {
   });
 });
 
+describe('Update task description and change complete status', () => {
+  let mockObj = [
+    { index: 1, description: 'First Task content', completed: false },
+    { index: 2, description: 'Second Task content', completed: false },
+    { index: 3, description: 'Third Task content', completed: false },
+    { index: 4, description: 'Fourth Task content', completed: false },
+  ];
+  it('Update a task description', () => {
+    document.body.innerHTML = `
+      <ul id="to-do-list-remove">
+        <li class="task" data-index="1">
+          <div><input class="task-description" value="First Task content"></div>
+        </li>
+        <li class="task" data-index="2">
+          <div><input class="task-description" value="Second Task content"></div>
+        </li>
+        <li class="task" data-index="3">
+          <div><input class="task-description" value="Third Task content"></div>
+        </li>
+        <li class="task" data-index="4">
+          <div><input class="task-description" value="Fourth Task content"></div>
+        </li>
+      </ul>
+    `;
+
+    const listDescriptions = document.querySelectorAll('.task-description');
+
+    const newDescription = 'Third Task Description';
+    listDescriptions[2].value = newDescription;
+
+    const taskDescriptionUpdated = updateTask(newDescription, 3, mockObj);
+
+    expect(taskDescriptionUpdated).toMatch(listDescriptions[2].value);
+  });
+});
