@@ -14,12 +14,10 @@ export const deleteTask = (taskItem) => {
   return tasksList;
 };
 
-export const deleteAllCompletedTasks = () => {
-  let tasksList = retrieveLocalStorage('tasks-list');
+export const deleteAllCompletedTasks = (tasksList, allTasksLi) => {
   if (!isEmpty(tasksList)) {
     const newElements = [];
     let task = null;
-    const allTasksLi = document.querySelectorAll('.task');
     for (let i = 0; i < tasksList.length; i += 1) {
       task = tasksList[i];
       if (task.completed) {
@@ -31,7 +29,9 @@ export const deleteAllCompletedTasks = () => {
     tasksList = cloneCollection(newElements);
     setTasksIds(tasksList);
     saveLocalStorage('tasks-list', JSON.stringify(tasksList));
+    return retrieveLocalStorage('tasks-list');
   }
+  return [];
 };
 
 export const deleteEventHandler = () => {
@@ -49,5 +49,9 @@ export const deleteEventHandler = () => {
 export const clearAllEventHandler = () => {
   document
     .querySelector('#btn-clear-list')
-    .addEventListener('click', deleteAllCompletedTasks);
+    .addEventListener('click', () => {
+      const tasksList = retrieveLocalStorage('tasks-list');
+      const allTasksLi = document.querySelectorAll('.task');
+      deleteAllCompletedTasks(tasksList, allTasksLi);
+    });
 };

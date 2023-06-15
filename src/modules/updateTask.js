@@ -12,24 +12,21 @@ export const setTasksIds = (tasksList) => {
   });
 };
 
-const updateTask = (taskItem) => {
-  const taskId = taskItem.parentElement.parentElement.dataset.index;
-  const index = Number(taskId) - 1;
-  const taskDescription = taskItem.innerText;
-  const tasksList = retrieveLocalStorage('tasks-list');
+export const updateTask = (taskDescription, index, tasksList) => {
   tasksList[index].description = taskDescription;
   saveLocalStorage('tasks-list', JSON.stringify(tasksList));
+  return tasksList[index].description;
 };
 
-const updateTaskStatus = (checkboxElement) => {
+export const updateTaskStatus = (checkboxElement, tasksList) => {
   const taskCompleted = checkboxElement.checked;
   const taskItem = checkboxElement.parentElement.parentElement.parentElement;
   const taskId = taskItem.dataset.index;
   const index = Number(taskId) - 1;
-  const tasksList = retrieveLocalStorage('tasks-list');
   tasksList[index].completed = taskCompleted;
   saveLocalStorage('tasks-list', JSON.stringify(tasksList));
   taskItem.classList.toggle('completed');
+  return retrieveLocalStorage('tasks-list');
 };
 
 const onTaskFocus = (event) => {
@@ -58,7 +55,11 @@ export const updateFocusEventHandlers = () => {
   allTaskDescription.forEach((inputDesc) => {
     inputDesc.addEventListener('keyup', (event) => {
       const taskItem = event.target;
-      updateTask(taskItem);
+      const taskId = taskItem.parentElement.parentElement.dataset.index;
+      const index = Number(taskId) - 1;
+      const taskDescription = taskItem.innerText;
+      const tasksList = retrieveLocalStorage('tasks-list');
+      updateTask(taskDescription, index, tasksList);
     });
     inputDesc.addEventListener('focusin', onTaskFocus);
     inputDesc.addEventListener('focusout', onTaskFocusOut);
@@ -66,7 +67,8 @@ export const updateFocusEventHandlers = () => {
   allTaskCheckbox.forEach((checkboxStatus) => {
     checkboxStatus.addEventListener('change', (event) => {
       const checkbox = event.target;
-      updateTaskStatus(checkbox);
+      const tasksList = retrieveLocalStorage('tasks-list');
+      updateTaskStatus(checkbox, tasksList);
     });
   });
 };
