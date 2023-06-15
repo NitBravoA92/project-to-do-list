@@ -31,6 +31,7 @@ export const deleteAllCompletedTasks = (tasksList, allTasksLi) => {
     saveLocalStorage('tasks-list', JSON.stringify(tasksList));
     return retrieveLocalStorage('tasks-list');
   }
+  return [];
 };
 
 export const deleteEventHandler = () => {
@@ -48,8 +49,8 @@ export const deleteEventHandler = () => {
 export const clearAllEventHandler = () => {
   document
     .querySelector('#btn-clear-list')
-    .addEventListener('click', (event) => {
-      let tasksList = retrieveLocalStorage('tasks-list');
+    .addEventListener('click', () => {
+      const tasksList = retrieveLocalStorage('tasks-list');
       const allTasksLi = document.querySelectorAll('.task');
       deleteAllCompletedTasks(tasksList, allTasksLi);
     });
