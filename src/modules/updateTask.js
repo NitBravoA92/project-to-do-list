@@ -12,13 +12,10 @@ export const setTasksIds = (tasksList) => {
   });
 };
 
-const updateTask = (taskItem) => {
-  const taskId = taskItem.parentElement.parentElement.dataset.index;
-  const index = Number(taskId) - 1;
-  const taskDescription = taskItem.innerText;
-  const tasksList = retrieveLocalStorage('tasks-list');
+export const updateTask = (taskDescription, index, tasksList) => {
   tasksList[index].description = taskDescription;
   saveLocalStorage('tasks-list', JSON.stringify(tasksList));
+  return tasksList[index].description;
 };
 
 const updateTaskStatus = (checkboxElement) => {
@@ -58,7 +55,11 @@ export const updateFocusEventHandlers = () => {
   allTaskDescription.forEach((inputDesc) => {
     inputDesc.addEventListener('keyup', (event) => {
       const taskItem = event.target;
-      updateTask(taskItem);
+      const taskId = taskItem.parentElement.parentElement.dataset.index;
+      const index = Number(taskId) - 1;
+      const taskDescription = taskItem.innerText;
+      const tasksList = retrieveLocalStorage('tasks-list');
+      updateTask(taskDescription, index, tasksList);
     });
     inputDesc.addEventListener('focusin', onTaskFocus);
     inputDesc.addEventListener('focusout', onTaskFocusOut);
