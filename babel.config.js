@@ -1,8 +1,8 @@
 module.exports = {
-  "env": {
-    "test": {
-      "plugins": ["@babel/plugin-transform-modules-commonjs"]
-    }
+  env: {
+    test: {
+      plugins: ['@babel/plugin-transform-modules-commonjs'],
+    },
   },
-  "presets": [["@babel/preset-env", {"targets": {"node": "current"}}]]
+  presets: [['@babel/preset-env', { targets: { node: 'current' } }]],
 };
