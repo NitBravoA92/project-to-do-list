@@ -3,8 +3,7 @@ import {
 } from './Utils.js';
 import { setTasksIds } from './updateTask.js';
 
-export const deleteTask = (taskBtnRemove) => {
-  const taskItem = taskBtnRemove.parentElement;
+export const deleteTask = (taskItem) => {
   const taskId = Number(taskItem.dataset.index);
   let tasksList = retrieveLocalStorage('tasks-list');
   const newTaskList = tasksList.filter(
@@ -12,8 +11,7 @@ export const deleteTask = (taskBtnRemove) => {
   );
   taskItem.remove();
   tasksList = cloneCollection(newTaskList);
-  setTasksIds(tasksList);
-  saveLocalStorage('tasks-list', JSON.stringify(tasksList));
+  return tasksList;
 };
 
 export const deleteAllCompletedTasks = () => {
@@ -41,7 +39,9 @@ export const deleteEventHandler = () => {
   allTaskBtnRemove.forEach((btnRemove) => {
     btnRemove.addEventListener('click', (event) => {
       const btnRemove = event.target;
-      deleteTask(btnRemove);
+      const taskListUpdated = deleteTask(btnRemove.parentElement);
+      setTasksIds(taskListUpdated);
+      saveLocalStorage('tasks-list', JSON.stringify(taskListUpdated));
     });
   });
 };
